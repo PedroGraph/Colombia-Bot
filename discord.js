@@ -1,3 +1,17 @@
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;  // Usa el puerto proporcionado por Render o el predeterminado
+
+// Rutas básicas (puedes agregar más rutas si lo necesitas)
+app.get('/', (req, res) => {
+    res.send('Bot en línea');
+});
+
+// Inicia el servidor en el puerto especificado
+app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+});
+
 const { Client, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus } = require('@discordjs/voice');
 const path = require('path');
