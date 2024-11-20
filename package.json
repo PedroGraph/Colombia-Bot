@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": " "
   },
   "keywords": [],
   "author": "",
@@ -11,7 +11,10 @@
   "description": "",
   "dependencies": {
     "@discordjs/voice": "^0.18.0",
+    "axios": "^1.7.7",
     "discord.js": "^14.16.3",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2",
+    "prism-media": "^1.3.5"
   }
 }
