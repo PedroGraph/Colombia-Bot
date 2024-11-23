@@ -11,13 +11,13 @@ export const AUDIO_PATHS = {
         audio: path.join(__dirname, '../colombia.mp3'),
         message: "Siempre es la misma mondá con esa selección valedora de verga. ¡Culpa de Petro!",
         type: 'audio',
-        seg: 10
+        seg: 17
     },
     '!fornicamos': {
         audio: path.join(__dirname, '../vivafalcao.mp3'),
         message: "¡Viva Colombia! ¡Viva Falcao!, el tigre más fuerte y valiente que tiene la cancha.",
         type: 'audio',
-        seg: 17
+        seg: 10
     },
     '!radiotiempo': {
         audio: 'https://24073.live.streamtheworld.com/RT_CARTAGENAAAC_SC?dist=RtCarWeb',
