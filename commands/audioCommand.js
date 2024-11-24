@@ -30,7 +30,7 @@ export async function playAudio(message, audioPath) {
 
     player.on(AudioPlayerStatus.Playing, () => {
         console.log(`Reproduciendo audio con el comando ${message.content} por ${message?.author?.tag || message?.user?.tag} en el canal ${voiceChannel.name} dentro del servidor ${voiceChannel.guild.name}`);
-        reply(messaage, AUDIO_PATHS[message.content].message);
+        reply(message, AUDIO_PATHS[message.content].message);
     });
 
     player.on(AudioPlayerStatus.Idle, () => {
