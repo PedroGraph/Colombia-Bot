@@ -1,8 +1,10 @@
-import { Client, GatewayIntentBits, VoiceChannel } from 'discord.js';
-import { TOKEN } from './utils/config.js';
-import { handlePlayCommand } from './commands/playCommand.js';
-import { leaveVoiceChannel } from './commands/leaveCommand.js';
-import { checkVoiceChannelActivity } from './utils/activityChannel.js';
+import { Client, GatewayIntentBits, REST, Routes } from 'discord.js';
+import { discordReady, discordMessages, discordInteractions } from './client.js';
+import env from 'dotenv';
+env.config();
+
+const TOKEN = process.env.DISCORD_TOKEN;
+const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -12,36 +14,14 @@ const client = new Client({
     ],
 });
 
-// Mapa para rastrear conexiones activas
 const activeConnections = new Map();
+const rest = new REST({ version: '10' }).setToken(TOKEN);
 
-client.once('ready', () => {
-    console.log(`Bot conectado como ${client.user.tag}`);
-});
+discordReady({client, CLIENT_ID, rest, Routes});
+discordMessages({client, activeConnections});
+discordInteractions({client, activeConnections});
 
-client.on('messageCreate', async (message) => {
-    if (message.author.bot) return;
-    const command = message.content.toLowerCase();
-
-    if (command === '!salir') leaveVoiceChannel(message, activeConnections);
-
-    const connection = await handlePlayCommand(message);
-    
-    if (connection) {
-        const voiceChannel = message.member.voice.channel;
-        activeConnections.set(message.guild.id, connection);
-        const intervalId = setInterval(() => {
-            const currentConnection = activeConnections.get(message.guild.id);
-            if (!currentConnection) {
-                clearInterval(intervalId);
-                return;
-            }
-            checkVoiceChannelActivity(connection, activeConnections, message, voiceChannel);
-        }, 60000);
-    }
-    
-});
-
+// Exportar setup
 export function setupBot() {
     client.login(TOKEN);
 }

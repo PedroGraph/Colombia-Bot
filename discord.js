@@ -3,6 +3,8 @@ const app = express();
 import { setupBot } from './bot.js';
 import routes from './routes.js';
 const PORT = process.env.PORT || 3000;
+import env from 'dotenv';
+env.config();
 
 app.use('/', routes);
 

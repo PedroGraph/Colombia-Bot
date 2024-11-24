@@ -1,30 +1,44 @@
-import { joinVoiceChannel } from '@discordjs/voice';
+import { getVoiceConnection } from '@discordjs/voice';
 
-export function leaveVoiceChannel(message) {
-    const botVoiceState = message.guild.members.me.voice; // Estado de voz del bot
+export async function leaveVoiceChannel(context) {
+    // Determina si es un mensaje o una interacción
+    const isInteraction = context.isCommand !== undefined;
+    const guild = isInteraction ? context.guild : context.guild;
 
-    // Verifica si el bot está conectado a un canal de voz
+    const botVoiceState = guild.members.me.voice;
+
     if (!botVoiceState || !botVoiceState.channel) {
-        message.reply('¿Me vas a sacar en donde no estoy? Tú eres como rarito.');
+        const response = '¿Me vas a sacar en donde no estoy? Tú eres como rarito.';
+        if (isInteraction) {
+            await (context.deferred || context.replied ? context.editReply(response) : context.reply(response));
+        } else {
+            context.reply(response);
+        }
         return;
     }
 
-    const voiceChannel = botVoiceState.channel;
+    const connection = getVoiceConnection(guild.id);
+    if (connection) {
+        connection.destroy();
 
-    const connection = joinVoiceChannel({
-        channelId: voiceChannel.id,
-        guildId: message.guild.id,
-        adapterCreator: message.guild.voiceAdapterCreator,
-    });
+        const response = 'Nospi, cachones.';
 
-    // Verifica si el único miembro en el canal es el bot
-    const members = voiceChannel.members.filter((member) => !member.user.bot);
-
-    if(members.size > 0 && message.content !== '!salir') message.reply('No me puedo ir, hay alguien más escuchándome, cagasten. Sigue y te culeo.');
-   
-    if(message.content === '!salir') message.reply('¡Nospi, sapos!');
-    if(members.size === 0) message.reply('Malparidos me dejaron solo. Hijueputas tenían que ser.');
-
-    console.log('Desconectado del canal de voz.');
-    connection.destroy(); 
+        if (isInteraction) {
+            if (context.deferred || context.replied) {
+                const textChannel = context.channel;
+                textChannel?.send(response);
+            } else {
+                await context.reply(response);
+            }
+        } else {
+            context.reply(response);
+        }
+    } else {
+        const response = '¿¿Qué mondá haces??';
+        if (isInteraction) {
+            await (context.deferred || context.replied ? context.editReply(response) : context.reply(response));
+        } else {
+            context.reply(response);
+        }
+    }
 }
