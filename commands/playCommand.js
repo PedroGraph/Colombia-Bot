@@ -6,7 +6,7 @@ export async function handlePlayCommand(message) {
 
     if (command === '!salir') return ;
 
-    if(message.startsWith('!') && !AUDIO_PATHS[command]){
+    if(command.startsWith('!') && !AUDIO_PATHS[command]){
         message.reply('¡Comando no reconocido! Usa un comando válido como `!hptamonda`, `!fornicamos` o `!radiotiempo`.');
         return false;
     } 
