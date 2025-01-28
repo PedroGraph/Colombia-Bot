@@ -44,7 +44,6 @@ export const AUDIO_PATHS = {
     }
 };
 
-
 export const AUDIO_PATHS_INTERACTION = {
     'radio': [{name: 'Radio Tiempo', value: '!radiotiempo'}, {name: 'Olimpica', value: '!olimpica'}, {name: 'La Reina', value: '!lareina'}, {name: 'Tropicana', value: '!tropicana'}],
     'feeling': [{name: 'Nos fornicaron', value: '!hptamonda'}, {name: 'Fornicamos', value: '!fornicamos'}, {name: 'Ni lo uno ni lo otro', value: '!hptamonda'}, {name: 'Lluvia de mondá llevaron', value: '!goleada'}]
