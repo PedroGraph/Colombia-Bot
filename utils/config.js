@@ -23,22 +23,22 @@ export const AUDIO_PATHS = {
         seg: 15
     },
     '!radiotiempo': {
-        audio: 'https://24073.live.streamtheworld.com/RT_CARTAGENAAAC_SC?dist=RtCarWeb',
+        audio: 'https://playerservices.streamtheworld.com/api/livestream-redirect/RT_CARTAGENAAAC_SC?dist=RtCarWeb',
         message: "Ta sonando la mejor radio de Colombia. RadioTiempo todo el tiempo.",
         type: 'radio'
     },
     '!olimpica':{
-        audio: 'https://22823.live.streamtheworld.com/OLP_CARTAGENAAAC?dist=oro_web',
+        audio: 'https://playerservices.streamtheworld.com/api/livestream-redirect/OLP_CARTAGENAAAC?dist=oro_web',
         message: "Yo escucho Olimpica poke me pone de todo.",
         type: 'radio'
     },
     '!lareina':{
-        audio: 'https://27353.live.streamtheworld.com/RNA_CARTAGENA_SC',
+        audio: 'https://playerservices.streamtheworld.com/api/livestream-redirect/RNA_CARTAGENA_SC',
         message: "Laaaaaaaaaaaaa Reinaaaa.",
         type: 'radio'
     },
     '!tropicana':{
-        audio: 'https://24253.live.streamtheworld.com/TR_CARTAGENAAAC_SC?csegid=2000',
+        audio: 'https://playerservices.streamtheworld.com/api/livestream-redirect/TR_CARTAGENAAAC_SC?csegid=2000',
         message: "Tropicana, la más bacana.",
         type: 'radio'
     }
